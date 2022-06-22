@@ -1,5 +1,9 @@
 import type { NextPage } from 'next';
-import { Todos } from '../components/todos';
+import dynamic from 'next/dynamic';
+
+const Todos = dynamic(() => import('../components/Todos'), {
+  ssr: false,
+});
 
 const Home: NextPage = () => {
   return (
