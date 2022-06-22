@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
-const Todos = dynamic(() => import('../components/Todos'), {
+const Todos = dynamic(() => import('../components/TodosComponent'), {
   ssr: false,
 });
 
