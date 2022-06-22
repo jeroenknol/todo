@@ -9,9 +9,10 @@ export type TodoType = {
 interface Props {
   todo: TodoType;
   toggleComplete: (id: string) => void;
+  removeTodo: (id: string) => void;
 }
 
-export const Todo: React.FC<Props> = ({ todo, toggleComplete }) => {
+export const Todo: React.FC<Props> = ({ todo, toggleComplete, removeTodo }) => {
   const { id, title, completed } = todo;
   const [innerTitle, setInnerTitle] = useState(title);
   const titleRef = useRef<HTMLInputElement>(null);
@@ -36,6 +37,9 @@ export const Todo: React.FC<Props> = ({ todo, toggleComplete }) => {
         onChange={(e) => setInnerTitle(e.target.value)}
         className='ml-2 py-1 px-2 w-full bg-transparent focus:bg-slate-600 hover:bg-slate-700 focus:outline-none text-white rounded-sm'
       />
+      <button onClick={() => removeTodo(todo.id)} className='ml-2 text-red-400'>
+        x
+      </button>
     </div>
   );
 };

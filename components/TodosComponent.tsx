@@ -15,6 +15,10 @@ const Todos = () => {
     setTodos((currentTodos) => [todoFactory(), ...currentTodos]);
   };
 
+  const removeTodo = useCallback((id: string) => {
+    setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
+  }, []);
+
   const toggleCompleted = useCallback((id: string) => {
     setTodos((currentTodos) => {
       return currentTodos.map((currentTodo) => {
@@ -29,7 +33,12 @@ const Todos = () => {
   return (
     <main className='w-96 h-[768px] bg-slate-800 rounded-lg p-4 relative'>
       {todos.map((todo) => (
-        <Todo key={todo.id} todo={todo} toggleComplete={toggleCompleted} />
+        <Todo
+          key={todo.id}
+          todo={todo}
+          toggleComplete={toggleCompleted}
+          removeTodo={removeTodo}
+        />
       ))}
 
       <button
